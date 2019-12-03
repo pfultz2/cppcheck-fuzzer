@@ -3,15 +3,16 @@
 mkdir -p tree/
 
 grammarinator-generate \
---encoding ascii \
 -l fuzzer/CPP14Unlexer.py \
 -p fuzzer/CPP14Unparser.py \
 --population tree/ \
---keep-trees \
--r declarationseq \
+-r translationunit \
 -o out/test_%d.cpp \
 -t grammarinator.runtime.simple_space_transformer \
--d 30 -n $1
+-d 10 -n $1
 
-# sed -E 's/\\[Uu]/_u_/g'
 echo out/*.cpp | xargs -n1 -P $(nproc) sed -i -E 's/\\[Uu]/_u_/g'
+echo out/*.cpp | xargs -n1 -P $(nproc) sed -i -E 's/\w"/"/g'
+# Remove non-ascii characters
+LANG=C
+echo out/*.cpp | xargs -n1 -P $(nproc) sed -i 's/[\d128-\d255]/_u_/g'

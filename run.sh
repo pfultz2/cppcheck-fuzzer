@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FAIL_DIR=$(pwd)/fail/
+export FAIL_DIR=$(pwd)/fail/
 mkdir -p $FAIL_DIR
 rm out/*.cpp
 ./generate.sh $1

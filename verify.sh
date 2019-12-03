@@ -1,3 +1,4 @@
+#!/bin/bash
 
 CPPCHECK=${CPPCHECK:-cppcheck}
 CXX=${CXX:-c++}
@@ -11,7 +12,7 @@ fi
 
 TMPFILE=$(mktemp)
 
-$CPPCHECK --enable=all $1 &> $TMPFILE
+$CPPCHECK --enable=all $1 |& tee $TMPFILE
 RES=$?
 if [ $RES -ne "0" ]; then
     rm $TMPFILE
