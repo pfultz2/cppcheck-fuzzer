@@ -1,9 +1,13 @@
 #!/bin/bash
 
+mkdir -p tree/
+
 grammarinator-generate \
 --encoding ascii \
 -l fuzzer/CPP14Unlexer.py \
 -p fuzzer/CPP14Unparser.py \
+--population tree/ \
+--keep-trees \
 -r declarationseq \
 -o out/test_%d.cpp \
 -t grammarinator.runtime.simple_space_transformer \
