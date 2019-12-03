@@ -3,8 +3,8 @@
 mkdir -p tree/
 
 grammarinator-generate \
--l fuzzer/CPP14Unlexer.py \
--p fuzzer/CPP14Unparser.py \
+-l fuzzer/CPP14CustomUnlexer.py \
+-p fuzzer/CPP14CustomUnparser.py \
 --population tree/ \
 -r translationunit \
 -o out/test_%d.cpp \
